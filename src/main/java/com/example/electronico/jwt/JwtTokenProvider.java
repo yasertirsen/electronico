@@ -23,7 +23,7 @@ import static com.example.electronico.constant.SecurityConstants.*;
 import static java.util.Arrays.stream;
 
 @Component
-public class JWTTokenProvider {
+public class JwtTokenProvider {
 
     @Value("${token.secret}")
     private String secret;
@@ -32,7 +32,7 @@ public class JWTTokenProvider {
         String[] claims = getClaimsFromUser(userPrincipal);
         return JWT.create()
                 .withIssuer(ISSUER)
-                .withAudience(PROGRAD_ADMINISTRATION)
+                .withAudience(ELECTRONICO_ADMINISTRATION)
                 .withIssuedAt(new Date()).withSubject(userPrincipal.getUsername())
                 .withArrayClaim(AUTHORITIES, claims)
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))

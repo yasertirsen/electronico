@@ -7,19 +7,14 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Data
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Product {
+@Entity
+public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long productId;
-    private String title;
-    private String manufacturer;
-    private double price;
-    private String category;
+    private Long itemId;
     @OneToOne
-    @JoinColumn(referencedColumnName = "imageId")
-    private Image image;
-    private Integer stock;
+    private Product product;
+    private Integer quantity;
 }

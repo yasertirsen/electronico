@@ -9,23 +9,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+@Data
+@Entity
+public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
-    private String fullName;
-    private String username;
-    private String email;
-    private String password;
-    private String address;
-    private Boolean enabled;
-    private String role;
-    private String[] authorities;
-    private Boolean isLocked;
-    private Long expiresIn;
-    private String token;
+    private Long reviewId;
+
+    private String reviewContent;
+    private Integer rating;
 }
