@@ -1,0 +1,23 @@
+.full-width {
+  width: 100%;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+mat-card {
+  text-align: center;
+  width: 500px;
+}
+
+a {
+  color: white;
+}
+
+.spacer {
+  margin: 10px;
+}
