@@ -16,10 +16,9 @@ public class Product {
     private Long productId;
     private String title;
     private String manufacturer;
-    private double price;
+    private Double price;
+    @Lob
+    private byte[] image;
     private String category;
-    @OneToOne
-    @JoinColumn(referencedColumnName = "imageId")
-    private Image image;
     private Integer stock;
 }

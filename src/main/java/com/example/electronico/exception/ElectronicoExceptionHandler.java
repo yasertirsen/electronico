@@ -17,9 +17,10 @@ import static org.springframework.http.HttpStatus.*;
 @RestControllerAdvice
 public class ElectronicoExceptionHandler {
 
-
-    public static final String INCORRECT_PASSWORD = "Incorrect password";
-
+    @ExceptionHandler(ProductNotFoundException.class)
+    public ResponseEntity<HttpCustomResponse> productNotFoundException () {
+        return createHttpResponse(BAD_REQUEST, PRODUCT_WAS_NOT_FOUND);
+    }
 
     @ExceptionHandler(IncorrectPasswordException.class)
     public ResponseEntity<HttpCustomResponse> incorrectPasswordException () {

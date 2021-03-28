@@ -20,8 +20,10 @@ import {LoginComponent} from "./login/login.component";
 import {FormsModule} from "@angular/forms";
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RegisterComponent } from './register/register.component';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { NotFoundComponent } from "./not-found/not-found.component";
+import { AddProductComponent } from './add-product/add-product.component';
+import {TokenInterceptor} from "./shared/interceptor/TokenInterceptor";
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { NotFoundComponent } from "./not-found/not-found.component";
     MainNavComponent,
     LoginComponent,
     RegisterComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,13 @@ import { NotFoundComponent } from "./not-found/not-found.component";
     FlexLayoutModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

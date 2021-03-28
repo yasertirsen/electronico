@@ -1,0 +1,31 @@
+<mat-card class="centered">
+  <mat-card-title>Add Product</mat-card-title>
+  <mat-card-content>
+    <form class="spacer">
+      <mat-label>Choose a profile picture (510x510)</mat-label>
+      <br>
+      <input type="file" (change)="onFileChanged($event)">
+    </form>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Ex. Playstation 5" [(ngModel)]="product.title" required>
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Manufacturer</mat-label>
+      <input matInput placeholder="Ex. Sony" [(ngModel)]="product.manufacturer" required>
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Price</mat-label>
+      <input matInput placeholder="Ex. 500EUR" [(ngModel)]="product.price" type="number" required>
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Category</mat-label>
+      <input matInput placeholder="Ex. Gaming Consoles" [(ngModel)]="product.category" required>
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Stock</mat-label>
+      <input matInput placeholder="Stock" [(ngModel)]="product.stock" type="number" required>
+    </mat-form-field>
+    <button mat-raised-button color="accent" (click)="onAdd()">Add</button>
+  </mat-card-content>
+</mat-card>
