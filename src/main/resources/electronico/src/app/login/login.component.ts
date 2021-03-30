@@ -12,7 +12,6 @@ import {UserService} from "../service/user.service";
 })
 export class LoginComponent implements OnInit {
   hide = true;
-  // @ts-ignore
   returnUrl: string;
   model: LoginRequest = {
     email:'',

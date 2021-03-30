@@ -35,4 +35,8 @@ export class ProductService {
   uploadImage(productId: number, imageData: FormData): Observable<any> {
     return this.http.post('http://localhost:8084/api/product/upload-image/' + productId, imageData);
   }
+
+  getAll(): Observable<any> {
+    return this.http.get('http://localhost:8084/api/product/get/all');
+  }
 }

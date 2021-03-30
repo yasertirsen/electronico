@@ -24,6 +24,9 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { NotFoundComponent } from "./not-found/not-found.component";
 import { AddProductComponent } from './add-product/add-product.component';
 import {TokenInterceptor} from "./shared/interceptor/TokenInterceptor";
+import { HomeComponent } from './home/home.component';
+import {MatTableModule} from "@angular/material/table";
+import {MatSortModule} from "@angular/material/sort";
 
 @NgModule({
   declarations: [
@@ -32,7 +35,8 @@ import {TokenInterceptor} from "./shared/interceptor/TokenInterceptor";
     LoginComponent,
     RegisterComponent,
     NotFoundComponent,
-    AddProductComponent
+    AddProductComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,9 @@ import {TokenInterceptor} from "./shared/interceptor/TokenInterceptor";
     MatPaginatorModule,
     FormsModule,
     FlexLayoutModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule,
+    MatSortModule
   ],
   providers: [
     {

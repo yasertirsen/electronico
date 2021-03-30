@@ -19,7 +19,6 @@ export class AddProductComponent implements OnInit {
     image: null,
     stock: 0
   }
-  // @ts-ignore
   selectedFile: File;
 
   constructor(private productService: ProductService, private _snackBar: MatSnackBar,
