@@ -1,6 +1,12 @@
 table {
-  width: 100%;
-  margin: 10px;
+  width: 50%;
+}
+
+.centered {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 tr.example-detail-row {
@@ -26,7 +32,6 @@ tr.example-element-row:not(.example-expanded-row):active {
 
 .example-element-diagram {
   min-width: 80px;
-  border: 2px solid black;
   padding: 8px;
   font-weight: lighter;
   margin: 8px 0;
@@ -44,11 +49,4 @@ tr.example-element-row:not(.example-expanded-row):active {
 
 .example-element-description-attribution {
   opacity: 0.5;
-}
-
-.centered {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }

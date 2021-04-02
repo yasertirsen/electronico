@@ -21,4 +21,10 @@ public interface ProductService {
     ResponseEntity<String> delete(Long productId) throws ProductNotFoundException;
 
     Product uploadImage(MultipartFile file, Long productId) throws IOException, UserNotFoundException;
+
+    List<Product> searchByTitle(String title);
+
+    List<Product> searchByCategory(String category);
+
+    List<Product> searchByManufacturer(String manufacturer);
 }

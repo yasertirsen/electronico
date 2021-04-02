@@ -1,0 +1,24 @@
+.search {
+  width: 50%;
+  box-sizing: border-box;
+  justify-content: center;
+}
+
+.mat-toolbar-row {
+  justify-content: center;
+}
+
+.search-bar {
+  margin: 10px 10px 10px 10px;
+}
+
+mat-form-field.mat-form-field {
+  margin: 10px 10px 10px 10px;
+  padding-top: 20px;
+  font-size: 14px;
+  width: 25%;
+}
+
+.spacer {
+  margin: 8px;
+}

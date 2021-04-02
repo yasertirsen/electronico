@@ -27,6 +27,8 @@ import {TokenInterceptor} from "./shared/interceptor/TokenInterceptor";
 import { HomeComponent } from './home/home.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
+import {MatSelectModule} from "@angular/material/select";
+import {SearchToolbarComponent} from "./shared/search-toolbar/search-toolbar.component";
 
 @NgModule({
   declarations: [
@@ -36,29 +38,31 @@ import {MatSortModule} from "@angular/material/sort";
     RegisterComponent,
     NotFoundComponent,
     AddProductComponent,
-    HomeComponent
+    HomeComponent,
+    SearchToolbarComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatSnackBarModule,
-    MatButtonModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule,
-    MatPaginatorModule,
-    FormsModule,
-    FlexLayoutModule,
-    HttpClientModule,
-    MatTableModule,
-    MatSortModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatSnackBarModule,
+        MatButtonModule,
+        LayoutModule,
+        MatToolbarModule,
+        MatSidenavModule,
+        MatIconModule,
+        MatListModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatCardModule,
+        MatPaginatorModule,
+        FormsModule,
+        FlexLayoutModule,
+        HttpClientModule,
+        MatTableModule,
+        MatSortModule,
+        MatSelectModule
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

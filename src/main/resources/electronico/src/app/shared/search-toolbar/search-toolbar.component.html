@@ -1,0 +1,21 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <form (ngSubmit)="onSearch()" class="form-check-inline search">
+      <div class="form-outline spacer">
+        <input type="text"
+               class="form-control"
+               placeholder="Keywords"
+               [(ngModel)]="keywords"
+               [ngModelOptions]="{standalone: true}"/>
+      </div>
+      <button
+        mat-raised-button
+        type="submit"
+        color="accent"
+        class="search-btn">
+        <mat-icon>search</mat-icon>
+        <span>Search</span>
+      </button>
+    </form>
+  </mat-toolbar-row>
+</mat-toolbar>

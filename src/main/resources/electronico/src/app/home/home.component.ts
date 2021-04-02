@@ -21,7 +21,7 @@ import {Product} from "../model/product.model";
 export class HomeComponent implements OnInit {
 
   datasource = new MatTableDataSource();
-  columnsToDisplay = ['title', 'manufacturer', 'category', 'price'];
+  columnsToDisplay = ['name', 'manufacturer', 'category', 'price'];
   expandedElement: Product | null;
   loading = true;
 

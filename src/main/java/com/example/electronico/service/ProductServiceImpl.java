@@ -59,4 +59,19 @@ public class ProductServiceImpl implements ProductService {
         product.setImage(file.getBytes());
         return productRepository.save(product);
     }
+
+    @Override
+    public List<Product> searchByTitle(String title) {
+        return productRepository.findByTitleIgnoreCaseContaining(title);
+    }
+
+    @Override
+    public List<Product> searchByCategory(String category) {
+        return productRepository.findByCategoryIgnoreCaseContaining(category);
+    }
+
+    @Override
+    public List<Product> searchByManufacturer(String manufacturer) {
+        return productRepository.findByManufacturerLike(manufacturer);
+    }
 }

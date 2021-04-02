@@ -45,8 +45,23 @@ public class ProductController {
         return productService.delete(productId);
     }
 
-    @PostMapping(value = "/upload-image/{productId}")
+    @PostMapping( "/upload-image/{productId}")
     public Product uploadImage(@RequestParam("imageFile") MultipartFile file, @PathVariable Long productId) throws IOException, UserNotFoundException {
         return productService.uploadImage(file, productId);
+    }
+
+    @GetMapping("/searchByTitle/{title}")
+    public List<Product> searchByTitle(@PathVariable String title) {
+        return productService.searchByTitle(title);
+    }
+
+    @GetMapping("/searchByCategory/{category}")
+    public List<Product> searchByCategory(@PathVariable String category) {
+        return productService.searchByCategory(category);
+    }
+
+    @GetMapping("/searchByManufacturer/{manufacturer}")
+    public List<Product> searchByManufacturer(@PathVariable String manufacturer) {
+        return productService.searchByManufacturer(manufacturer);
     }
 }

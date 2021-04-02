@@ -16,11 +16,14 @@
     </mat-form-field>
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>Price</mat-label>
-      <input matInput placeholder="Ex. 500EUR" [(ngModel)]="product.price" type="number" required>
+      <input matInput placeholder="Ex. 500" [(ngModel)]="product.price" type="number" required>
     </mat-form-field>
     <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Category</mat-label>
-      <input matInput placeholder="Ex. Gaming Consoles" [(ngModel)]="product.category" required>
+      <mat-label>Categories</mat-label>
+      <mat-select [(value)]="selectedCategory">
+        <mat-option></mat-option>
+        <mat-option [value]="option" *ngFor="let option of categories">{{ option }}</mat-option>
+      </mat-select>
     </mat-form-field>
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>Stock</mat-label>
