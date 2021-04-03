@@ -29,6 +29,8 @@ import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
 import {MatSelectModule} from "@angular/material/select";
 import {SearchToolbarComponent} from "./shared/search-toolbar/search-toolbar.component";
+import { ProductsViewComponent } from './shared/products-view/products-view.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import {SearchToolbarComponent} from "./shared/search-toolbar/search-toolbar.com
     NotFoundComponent,
     AddProductComponent,
     HomeComponent,
-    SearchToolbarComponent
+    SearchToolbarComponent,
+    ProductsViewComponent,
+    SearchComponent
   ],
     imports: [
         BrowserModule,

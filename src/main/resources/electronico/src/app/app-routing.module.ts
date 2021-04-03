@@ -5,6 +5,7 @@ import {RegisterComponent} from "./register/register.component";
 import {NotFoundComponent} from "./not-found/not-found.component";
 import {AddProductComponent} from "./add-product/add-product.component";
 import {HomeComponent} from "./home/home.component";
+import {SearchComponent} from "./search/search.component";
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'add-product',
     component: AddProductComponent
+  },
+  {
+    path: 'search/:type/:keywords',
+    component: SearchComponent
   },
   {
     path: '**',

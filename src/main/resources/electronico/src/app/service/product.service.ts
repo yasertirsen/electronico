@@ -39,4 +39,16 @@ export class ProductService {
   getAll(): Observable<any> {
     return this.http.get('http://localhost:8084/api/product/get/all');
   }
+
+  searchByTitle(title: string): Observable<any> {
+    return this.http.get('http://localhost:8084/api/product/searchByTitle/' + title);
+  }
+
+  searchByCategory(category: string): Observable<any> {
+    return this.http.get('http://localhost:8084/api/product/searchByCategory/' + category);
+  }
+
+  searchByManufacturer(manufacturer: string): Observable<any> {
+    return this.http.get('http://localhost:8084/api/product/searchByManufacturer/' + manufacturer);
+  }
 }

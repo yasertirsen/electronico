@@ -1,13 +1,22 @@
 <mat-toolbar>
   <mat-toolbar-row>
     <form (ngSubmit)="onSearch()" class="form-check-inline search">
-      <div class="form-outline spacer">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Search</mat-label>
         <input type="text"
-               class="form-control"
                placeholder="Keywords"
+               matInput
                [(ngModel)]="keywords"
                [ngModelOptions]="{standalone: true}"/>
-      </div>
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Search By...</mat-label>
+        <mat-select [(ngModel)]="selectedOption" name="option">
+          <mat-option value="name">Product Name</mat-option>
+          <mat-option value="category">Category</mat-option>
+          <mat-option value="manufacturer">Manufacturer</mat-option>
+        </mat-select>
+      </mat-form-field>
       <button
         mat-raised-button
         type="submit"

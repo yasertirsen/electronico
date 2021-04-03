@@ -9,7 +9,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class SearchToolbarComponent implements OnInit {
 
   keywords: string;
-  location: string;
+  selectedOption: string;
 
   constructor(private router: Router) { }
 
@@ -17,13 +17,9 @@ export class SearchToolbarComponent implements OnInit {
   }
 
   onSearch() {
-    if(this.location === undefined){
-      this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
-        this.router.navigateByUrl('/search/' + this.keywords));
-    }
-    else {
-      this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
-        this.router.navigateByUrl('/search/' + this.location + '/' + this.keywords));
-    }
+    if(this.selectedOption === undefined)
+      this.selectedOption = 'name';
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+      this.router.navigateByUrl('/search/' + this.selectedOption + '/' + this.keywords));
   }
 }
