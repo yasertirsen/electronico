@@ -38,4 +38,8 @@ export class MainNavComponent {
       duration: 3000
     });
   }
+
+  isAuthenticated() {
+    return localStorage.getItem('currentUser');
+  }
 }

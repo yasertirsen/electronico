@@ -17,3 +17,7 @@ mat-card {
 .spacer {
   margin: 10px;
 }
+
+textarea {
+  height: 150px;
+}

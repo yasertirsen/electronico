@@ -26,6 +26,10 @@
       </mat-select>
     </mat-form-field>
     <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea matInput placeholder="Description" [(ngModel)]="product.description" required></textarea>
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
       <mat-label>Stock</mat-label>
       <input matInput placeholder="Stock" [(ngModel)]="product.stock" type="number" required>
     </mat-form-field>

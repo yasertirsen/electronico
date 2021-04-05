@@ -16,6 +16,7 @@ export class AddProductComponent implements OnInit {
     manufacturer: '',
     price: 0,
     category: '',
+    description: '',
     image: null,
     stock: 0
   }

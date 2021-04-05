@@ -1,0 +1,24 @@
+<div class="container" *ngIf="!loading">
+  <mat-card>
+    <mat-card-header>
+      <img mat-card-avatar [src]="getImg(product.image)" alt="{{product.title}} image">
+      <mat-card-title>{{product.title}}</mat-card-title>
+      <mat-card-subtitle>{{product.manufacturer}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <span class="mat-display-1">&euro;{{product.price}}<br><br></span>
+      <span>{{product.description}}<br></span>
+        <span *ngIf="product.stock > 0" style="color: #1e961e">In Stock<br><br></span>
+      <span *ngIf="product.stock <= 0" style="color: #1e961e">Out Of Stock<br><br></span>
+      <button mat-raised-button color="primary">Add To Cart</button>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Reviews</mat-card-title>
+      <mat-card-subtitle><button mat-button color="accent"><mat-icon>rate_review</mat-icon>   Leave Review</button></mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content></mat-card-content>
+  </mat-card>
+</div>

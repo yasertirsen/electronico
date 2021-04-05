@@ -21,6 +21,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.UUID;
 
 import static com.example.electronico.constant.ErrorConstants.EMAIL_ALREADY_EXISTS;
@@ -29,6 +30,7 @@ import static com.example.electronico.model.Role.ROLE_USER;
 
 @Service
 @Qualifier("UserDetailsService")
+@Transactional
 public class UserServiceImpl implements UserService, UserDetailsService {
     private final BCryptPasswordEncoder passwordEncoder;
     private final MailService mailService;

@@ -31,6 +31,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {SearchToolbarComponent} from "./shared/search-toolbar/search-toolbar.component";
 import { ProductsViewComponent } from './shared/products-view/products-view.component';
 import { SearchComponent } from './search/search.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { SearchComponent } from './search/search.component';
     HomeComponent,
     SearchToolbarComponent,
     ProductsViewComponent,
-    SearchComponent
+    SearchComponent,
+    ProductDetailsComponent
   ],
     imports: [
         BrowserModule,

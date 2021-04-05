@@ -18,6 +18,8 @@ public class Product {
     private String manufacturer;
     private Double price;
     @Lob
+    private String description;
+    @Lob
     private byte[] image;
     private String category;
     private Integer stock;

@@ -11,14 +11,11 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   add(product: Product): Observable<any> {
-    return this.http.post('http://localhost:8084/api/product/add', {
-      "title": product.title,
-      "manufacturer": product.manufacturer,
-      "price": product.price,
-      "category": product.category,
-      "image": product.image,
-      "stock": product.stock,
-    });
+    return this.http.post('http://localhost:8084/api/product/add', product);
+  }
+
+  get(productId: number): Observable<any> {
+    return this.http.get('http://localhost:8084/api/product/get/' + productId);
   }
 
   update(product: Product): Observable<any> {
@@ -27,6 +24,7 @@ export class ProductService {
       "manufacturer": product.manufacturer,
       "price": product.price,
       "category": product.category,
+      "description": product.description,
       "image": product.image,
       "stock": product.stock,
     });

@@ -5,6 +5,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {ProductService} from "../../service/product.service";
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-products-view',
@@ -22,7 +23,7 @@ export class ProductsViewComponent implements OnInit {
 
   @Input() products: Product[];
   datasource = new MatTableDataSource();
-  columnsToDisplay = ['name', 'manufacturer', 'category', 'price'];
+  columnsToDisplay = ['image', 'name', 'manufacturer', 'category', 'price'];
   expandedElement: Product | null;
 
   private paginator: MatPaginator;
@@ -43,7 +44,7 @@ export class ProductsViewComponent implements OnInit {
     this.datasource.sort = this.sort;
   }
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   applyFilter(event: Event) {
@@ -61,5 +62,9 @@ export class ProductsViewComponent implements OnInit {
 
   onAddToCart(product: Product) {
     console.log(product);
+  }
+
+  onProduct(product: any): void {
+    this.router.navigateByUrl('/product/' + product.productId);
   }
 }
