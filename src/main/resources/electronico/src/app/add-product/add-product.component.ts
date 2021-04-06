@@ -22,7 +22,7 @@ export class AddProductComponent implements OnInit {
   }
   selectedFile: File;
   selectedCategory: string;
-  categories = ['Gaming Consoles', 'Laptop and PC', 'Smartphones', 'Accessories', 'Cameras', 'Other']
+  categories = ['Gaming Consoles', 'Laptop and PC', 'Smartphones', 'Accessories', 'Cameras', 'Home', 'Other']
 
   constructor(private productService: ProductService, private _snackBar: MatSnackBar,
               private router: Router) {
@@ -41,6 +41,7 @@ export class AddProductComponent implements OnInit {
     imageData.append('imageFile', this.selectedFile);
     imageData.get('imageFile')
     this.product.category = this.selectedCategory;
+    console.log(this.product);
     this.productService.add(this.product).subscribe(data => {
       this.product = data;
       this.productService.uploadImage(this.product.productId, imageData).subscribe(res => {

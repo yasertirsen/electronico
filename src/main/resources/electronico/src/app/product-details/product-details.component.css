@@ -1,6 +1,7 @@
 img {
-  width: 300px;
+  width: 500px;
   height: auto;
+  border-radius: 0;
 }
 
 mat-card {

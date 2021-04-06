@@ -25,6 +25,7 @@ export class UserService {
             "password": details.password})
       .pipe(map(user => {
               if(user && user.token) {
+                console.log(user);
                 localStorage.setItem('currentUser', JSON.stringify(user));
                 localStorage.setItem('token', user.token);
                 localStorage.setItem('email', user.email);
@@ -54,72 +55,12 @@ export class UserService {
     return this.http.get('http://localhost:8083/getUserById/' + userId);
   }
 
-  getUserAvatar(userId: number): Observable<any>{
-    return this.http.get('http://localhost:8083/getStudentAvatar/' + userId);
-  }
-
-  verifyToken(token: string, password: string): Observable<any>{
-    return this.http.put('http://localhost:8083/changePassword/' + token, {},
-      {params: {password: password}});
-  }
-
-  sendVerify(email: string): Observable<any>{
-    return this.http.get('http://localhost:8083/sendVerify/',
-      {params: {email: email}});
-  }
-
 
   updateUser(user: User): Observable<any>{
     return this.http.put('http://localhost:8083/update',
-      {
-        "userId": user.userId,
-        "fullName": user.fullName,
-        "password": user.password,
-        "email": user.email,
-        "username": user.username,
-        "address": user.address,
-        "enabled": user.enabled,
-        "role": user.role,
-        "authorities": user.authorities,
-        "isLocked": user.isLocked
-      });
+      user);
   }
 
-  // getSkillsNames(profile: Profile): Observable<any>{
-  //   return this.http.post('http://localhost:8083/getSkillsNames',
-  //     {
-  //       "profileId": profile.profileId,
-  //       "course": profile.course,
-  //       "bio": profile.bio,
-  //       "externalSkills": profile.externalSkills,
-  //       "projects": profile.projects,
-  //       "experiences": profile.experiences,
-  //       "averageGrade": profile.averageGrade,
-  //       "startCourse": profile.startCourse,
-  //       "endCourse": profile.endCourse,
-  //       "age": profile.age,
-  //       "race": profile.race,
-  //       "gender": profile.gender
-  //     });
-  // }
-  //
-  // updateProfile(profile: ProfileModel): Observable<any>{
-  //   return this.http.put('http://localhost:8083/updateProfile',
-  //     {
-  //       "profileId": profile.profileId,
-  //       "course": profile.course,
-  //       "bio": profile.bio,
-  //       "externalSkills": profile.externalSkills,
-  //       "projects": profile.projects,
-  //       "experiences": profile.experiences,
-  //       "averageGrade": profile.averageGrade,
-  //       "startCourse": profile.startCourse,
-  //       "endCourse": profile.endCourse,
-  //       "age": profile.age,
-  //       "race": profile.race,
-  //       "gender": profile.gender
-  //     });
-  // }
 
   uploadImage(imageData: FormData, userId: number): Observable<any> {
     return this.http.post('http://localhost:8083/upload/image/' + userId,
@@ -127,11 +68,7 @@ export class UserService {
   }
 
   register(user: RegisterRequest) {
-    return this.http.post('http://localhost:8084/api/user/register', {
-      "username": user.username,
-      "password": user.password,
-      "email": user.email
-    });
+    return this.http.post('http://localhost:8084/api/user/register', user);
 
   }
 }

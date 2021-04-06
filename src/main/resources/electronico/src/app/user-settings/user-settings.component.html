@@ -1,0 +1,16 @@
+<div class="container" *ngIf="!loading">
+  <mat-card>
+    <mat-card-header>
+      <span class="mat-display-1"><b>Settings</b></span>
+    </mat-card-header>
+    <hr>
+    <mat-card-content>
+      <span class="mat-headline">Name <button mat-icon-button color="accent"><mat-icon>edit</mat-icon></button></span>
+      <h2>{{user.fullName}}</h2>
+      <hr><br>
+      <span class="mat-headline">Address <button mat-icon-button color="accent"><mat-icon>edit</mat-icon></button></span>
+      <h2>{{user.address}}</h2>
+      <hr><br>
+    </mat-card-content>
+  </mat-card>
+</div>

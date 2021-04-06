@@ -18,4 +18,6 @@ public class Cart {
     @OneToMany
     @JoinColumn(name = "itemId")
     private List<Item> items;
+    private Long userId;
+    private Double total;
 }

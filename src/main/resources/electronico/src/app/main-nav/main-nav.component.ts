@@ -6,13 +6,14 @@ import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {MatSidenav} from "@angular/material/sidenav";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {UserService} from "../service/user.service";
+import {User} from "../model/user.model";
 
 @Component({
   selector: 'app-main-nav',
   templateUrl: './main-nav.component.html',
   styleUrls: ['./main-nav.component.css']
 })
-export class MainNavComponent {
+export class MainNavComponent implements OnInit{
   activeRoute: string | undefined;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -30,6 +31,9 @@ export class MainNavComponent {
     });
   }
 
+  ngOnInit(): void {
+    }
+
 
   onLogout(drawer: MatSidenav) {
     drawer.toggle()
@@ -40,6 +44,15 @@ export class MainNavComponent {
   }
 
   isAuthenticated() {
-    return localStorage.getItem('currentUser');
+    return !!localStorage.getItem('currentUser');
+  }
+
+  isAdmin() {
+    if(!!localStorage.getItem('currentUser')) {
+      let user = JSON.parse(<string>localStorage.getItem('currentUser'));
+      return user.role === 'ROLE_ADMIN';
+    }
+    else
+      return false;
   }
 }

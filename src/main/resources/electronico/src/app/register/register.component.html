@@ -15,13 +15,24 @@
 
         <form #f="ngForm" (ngSubmit)="f.form.valid && register()" novalidate>
           <mat-form-field class="full-width" appearance="outline">
-            <mat-label>Username</mat-label>
+            <mat-label>Full Name</mat-label>
             <input matInput
-                   placeholder="Username"
-                   name="username"
-                   [(ngModel)]="model.username"
-                   #username="ngModel"
-                   [ngClass]="{ 'is-invalid': f.submitted && email.invalid}"
+                   placeholder="Full Name"
+                   name="full name"
+                   [(ngModel)]="model.fullName"
+                   #fullName="ngModel"
+                   [ngClass]="{ 'is-invalid': f.submitted && fullName.invalid}"
+                   required>
+          </mat-form-field>
+
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Address</mat-label>
+            <input matInput
+                   placeholder="Address"
+                   name="address"
+                   #address="ngModel"
+                   [(ngModel)]="model.address"
+                   [ngClass]="{ 'is-invalid': f.submitted && address.invalid}"
                    required>
           </mat-form-field>
 

@@ -32,6 +32,7 @@ import {SearchToolbarComponent} from "./shared/search-toolbar/search-toolbar.com
 import { ProductsViewComponent } from './shared/products-view/products-view.component';
 import { SearchComponent } from './search/search.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { UserSettingsComponent } from './user-settings/user-settings.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     SearchToolbarComponent,
     ProductsViewComponent,
     SearchComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    UserSettingsComponent
   ],
     imports: [
         BrowserModule,

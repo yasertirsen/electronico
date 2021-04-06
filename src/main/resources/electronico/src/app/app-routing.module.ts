@@ -7,6 +7,9 @@ import {AddProductComponent} from "./add-product/add-product.component";
 import {HomeComponent} from "./home/home.component";
 import {SearchComponent} from "./search/search.component";
 import {ProductDetailsComponent} from "./product-details/product-details.component";
+import {UserSettingsComponent} from "./user-settings/user-settings.component";
+import {AuthGuard} from "./_guards/auth.guard";
+import {Authorities} from "./model/authorities.model";
 
 const routes: Routes = [
   {
@@ -28,7 +31,9 @@ const routes: Routes = [
   },
   {
     path: 'add-product',
-    component: AddProductComponent
+    component: AddProductComponent,
+    canActivate: [AuthGuard],
+    data: {authorities: [Authorities.ADMIN]}
   },
   {
     path: 'search/:type/:keywords',
@@ -37,6 +42,10 @@ const routes: Routes = [
   {
     path: 'product/:productId',
     component: ProductDetailsComponent
+  },
+  {
+    path: 'settings',
+    component: UserSettingsComponent
   },
   {
     path: '**',

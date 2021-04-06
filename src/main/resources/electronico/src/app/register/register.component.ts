@@ -13,9 +13,10 @@ import {UserService} from "../service/user.service";
 export class RegisterComponent implements OnInit {
   hide = true;
   model: RegisterRequest = {
-    username:'',
+    fullName:'',
     email:'',
-    password:''
+    password:'',
+    address: ''
   };
 
   constructor(private userService: UserService, private router: Router,

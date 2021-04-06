@@ -9,14 +9,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
 @Entity
-public class Review {
+@AllArgsConstructor
+@NoArgsConstructor
+public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long reviewId;
-    private String reviewContent;
-    private Double rating;
+    private Long paymentId;
+    private String cardNumber;
+    private String cardName;
+    private String expiry;
 }
