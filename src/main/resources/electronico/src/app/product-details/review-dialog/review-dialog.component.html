@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Review</h1>
+<div class="content" mat-dialog-content>
+  <ngb-rating [(rate)]="review.rating" [max]="5">
+    <ng-template let-fill="fill">
+      <span class="star" [class.filled]="fill === 100">&#9733;</span>
+    </ng-template>
+  </ngb-rating>
+  <mat-form-field class="full-width" appearance="outline">
+    <mat-label>Review</mat-label>
+    <textarea matInput [(ngModel)]="review.reviewContent"></textarea>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="review">Post</button>
+</div>

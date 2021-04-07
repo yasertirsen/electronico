@@ -1,11 +1,9 @@
-img {
-  width: 500px;
-  height: auto;
-  border-radius: 0;
+.full-width {
+  width: 100%;
 }
 
-mat-card {
-  margin: 10px;
+textarea {
+  height: 100px;
 }
 
 .star {

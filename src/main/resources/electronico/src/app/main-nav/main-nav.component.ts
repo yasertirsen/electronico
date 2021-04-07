@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
-import { map, shareReplay, filter } from 'rxjs/operators';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {Observable} from 'rxjs';
+import {map, shareReplay} from 'rxjs/operators';
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {MatSidenav} from "@angular/material/sidenav";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -15,6 +15,8 @@ import {User} from "../model/user.model";
 })
 export class MainNavComponent implements OnInit{
   activeRoute: string | undefined;
+  user: User;
+  hidden = true;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -32,6 +34,10 @@ export class MainNavComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    if(!!localStorage.getItem('currentUser')) {
+      this.user = JSON.parse(<string>localStorage.getItem('currentUser'));
+      this.hidden = this.user.cart.items.length === 0;
+      }
     }
 
 
@@ -44,15 +50,10 @@ export class MainNavComponent implements OnInit{
   }
 
   isAuthenticated() {
-    return !!localStorage.getItem('currentUser');
+    return !!this.user;
   }
 
   isAdmin() {
-    if(!!localStorage.getItem('currentUser')) {
-      let user = JSON.parse(<string>localStorage.getItem('currentUser'));
-      return user.role === 'ROLE_ADMIN';
-    }
-    else
-      return false;
+      return !!this.user && this.user.role === 'ROLE_ADMIN';
   }
 }

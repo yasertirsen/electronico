@@ -3,7 +3,6 @@ import {MatTableDataSource} from "@angular/material/table";
 import {Product} from "../../model/product.model";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
-import {ProductService} from "../../service/product.service";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {Router} from "@angular/router";
 
@@ -58,10 +57,6 @@ export class ProductsViewComponent implements OnInit {
 
   getImg(image: string | SVGImageElement) {
     return 'data:image/jpeg;base64,' + image
-  }
-
-  onAddToCart(product: Product) {
-    console.log(product);
   }
 
   onProduct(product: any): void {

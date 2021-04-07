@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Product} from "../model/product.model";
 import {Observable} from "rxjs";
+import {Review} from "../model/review.model";
 
 @Injectable({
   providedIn: 'root'
@@ -19,15 +20,7 @@ export class ProductService {
   }
 
   update(product: Product): Observable<any> {
-    return this.http.put('http://localhost:8084/api/product/update', {
-      "title": product.title,
-      "manufacturer": product.manufacturer,
-      "price": product.price,
-      "category": product.category,
-      "description": product.description,
-      "image": product.image,
-      "stock": product.stock,
-    });
+    return this.http.put('http://localhost:8084/api/product/update', product);
   }
 
   uploadImage(productId: number, imageData: FormData): Observable<any> {
@@ -48,5 +41,13 @@ export class ProductService {
 
   searchByManufacturer(manufacturer: string): Observable<any> {
     return this.http.get('http://localhost:8084/api/product/searchByManufacturer/' + manufacturer);
+  }
+
+  review(review: Review): Observable<any> {
+    return this.http.post('http://localhost:8084/api/product/review', review);
+  }
+
+  getReviews(productId: number): Observable<any> {
+    return this.http.get('http://localhost:8084/api/product/reviews/' + productId);
   }
 }

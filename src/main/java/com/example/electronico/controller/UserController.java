@@ -44,19 +44,15 @@ public class UserController {
     @ResponseBody
     public ResponseEntity<User> login(@RequestBody User user) throws UserNotFoundException, IncorrectPasswordException {
 
+        authenticate(user.getEmail(), user.getPassword());
         User loggedUser = userRepository.findByEmail(user.getEmail()).orElseThrow(()
                 -> new UserNotFoundException("User with email " + user.getEmail() + " was not found"));
-        if(passwordEncoder.matches(user.getPassword(), loggedUser.getPassword())) {
-            authenticate(loggedUser.getEmail(), loggedUser.getPassword());
-            UserPrincipal userPrincipal = new UserPrincipal(loggedUser);
-            loggedUser.setExpiresIn(EXPIRATION_TIME);
-            loggedUser.setToken(jwtTokenProvider.generateJwtToken(userPrincipal));
+        UserPrincipal userPrincipal = new UserPrincipal(loggedUser);
 
-            return new ResponseEntity<>(loggedUser, HttpStatus.OK);
-        }
-        else
-            throw new IncorrectPasswordException();
+        loggedUser.setExpiresIn(EXPIRATION_TIME);
+        loggedUser.setToken(jwtTokenProvider.generateJwtToken(userPrincipal));
 
+        return new ResponseEntity<>(loggedUser, HttpStatus.OK);
     }
 
     private void authenticate(String username, String password) {

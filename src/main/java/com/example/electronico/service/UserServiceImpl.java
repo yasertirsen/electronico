@@ -23,12 +23,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.UUID;
 
 import static com.example.electronico.constant.ErrorConstants.EMAIL_ALREADY_EXISTS;
-import static com.example.electronico.constant.ErrorConstants.USERNAME_ALREADY_EXISTS;
-import static com.example.electronico.model.Role.ROLE_ADMIN;
 import static com.example.electronico.model.Role.ROLE_USER;
 
 @Service
@@ -103,8 +100,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email).orElseThrow(()
                 -> new UserNotFoundException("User with email " + email + " was not found"));
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-
         return new UserPrincipal(user);
     }
 }
