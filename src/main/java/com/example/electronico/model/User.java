@@ -18,7 +18,6 @@ public class User {
     private Long userId;
     private String fullName;
     private String email;
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     private String address;
     private Boolean enabled;
@@ -26,6 +25,7 @@ public class User {
     private String[] authorities;
     private Boolean isLocked;
     private Long expiresIn;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String token;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(referencedColumnName = "cartId")

@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
 import {NotFoundComponent} from "./not-found/not-found.component";
@@ -10,6 +10,7 @@ import {ProductDetailsComponent} from "./product-details/product-details.compone
 import {UserSettingsComponent} from "./user-settings/user-settings.component";
 import {AuthGuard} from "./_guards/auth.guard";
 import {Authorities} from "./model/authorities.model";
+import {ViewCartComponent} from "./view-cart/view-cart.component";
 
 const routes: Routes = [
   {
@@ -46,6 +47,10 @@ const routes: Routes = [
   {
     path: 'settings',
     component: UserSettingsComponent
+  },
+  {
+    path: 'cart',
+    component: ViewCartComponent
   },
   {
     path: '**',

@@ -29,7 +29,6 @@
       </button>
       </div>
       <a routerLink="/home">
-        <!--        <img src="https://i.imgur.com/khTyWq7.png" alt="Prograd icon">-->
         <span class="mat-display-1"><b>Electronico.</b></span></a>
       <span class="spacer"></span>
       <mat-nav-list>
@@ -38,7 +37,8 @@
         <button mat-icon-button [matBadge]="user.cart.items.length"
                 matBadgeColor="accent"
                 [matBadgeHidden]="hidden"
-                *ngIf="isAuthenticated()">
+                *ngIf="isAuthenticated()"
+                routerLink="/cart">
           <mat-icon>shopping_cart</mat-icon></button>
       </mat-nav-list>
     </mat-toolbar>

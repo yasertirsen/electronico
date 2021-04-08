@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Settings</h1>
+<div class="content" mat-dialog-content>
+  <mat-form-field class="full-width" appearance="outline">
+    <mat-label>Name</mat-label>
+    <input type="text" matInput [(ngModel)]="user.fullName">
+  </mat-form-field>
+  <mat-form-field class="full-width" appearance="outline">
+    <mat-label>Address</mat-label>
+    <input type="text" matInput [(ngModel)]="user.address">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="user">Save</button>
+</div>

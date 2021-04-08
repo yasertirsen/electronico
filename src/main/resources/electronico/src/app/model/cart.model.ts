@@ -4,4 +4,5 @@ export interface Cart {
   cartId: number;
   items: Item[];
   userId: number;
+  total: number;
 }

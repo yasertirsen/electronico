@@ -1,0 +1,29 @@
+.full-width {
+  width: 100%;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 1fr 100px;
+  vertical-align: center;
+}
+
+.beside {
+  display: inline-block;
+}
+
+.spacer {
+  margin: 10px;
+}
+
+.image-container {
+  display: inline-block;
+  margin: 5px;
+  width: 150px;
+  height: 150px;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}

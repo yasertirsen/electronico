@@ -11,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import static com.example.electronico.constant.SecurityConstants.EXPIRATION_TIME;
@@ -21,16 +20,14 @@ import static com.example.electronico.constant.SecurityConstants.EXPIRATION_TIME
 public class UserController {
     private final UserService userService;
     private final UserRepository userRepository;
-    private final BCryptPasswordEncoder passwordEncoder;
     private final JwtTokenProvider jwtTokenProvider;
     private final AuthenticationManager authenticationManager;
 
     @Autowired
-    public UserController(UserService userService, UserRepository userRepository, BCryptPasswordEncoder passwordEncoder,
+    public UserController(UserService userService, UserRepository userRepository,
                           JwtTokenProvider jwtTokenProvider, AuthenticationManager authenticationManager) {
         this.userService = userService;
         this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
         this.jwtTokenProvider = jwtTokenProvider;
         this.authenticationManager = authenticationManager;
     }
@@ -57,11 +54,6 @@ public class UserController {
 
     private void authenticate(String username, String password) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-    }
-
-    @GetMapping("/verification/{token}")
-    public ResponseEntity<String> verifyAccount(@PathVariable String token) throws UserNotFoundException {
-        return userService.verifyAccount(token);
     }
 
     @PutMapping("/update")

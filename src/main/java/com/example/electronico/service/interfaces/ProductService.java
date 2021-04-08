@@ -3,7 +3,6 @@ package com.example.electronico.service.interfaces;
 import com.example.electronico.exception.ProductNotFoundException;
 import com.example.electronico.exception.UserNotFoundException;
 import com.example.electronico.model.Product;
-import com.example.electronico.model.Review;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,8 +27,4 @@ public interface ProductService {
     List<Product> searchByCategory(String category);
 
     List<Product> searchByManufacturer(String manufacturer);
-
-    Review review(Review review);
-
-    List<Review> getReviews(Long productId);
 }

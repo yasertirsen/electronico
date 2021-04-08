@@ -3,9 +3,7 @@ package com.example.electronico.service;
 import com.example.electronico.exception.ProductNotFoundException;
 import com.example.electronico.exception.UserNotFoundException;
 import com.example.electronico.model.Product;
-import com.example.electronico.model.Review;
 import com.example.electronico.repository.ProductRepository;
-import com.example.electronico.repository.ReviewRepository;
 import com.example.electronico.service.interfaces.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,12 +20,10 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
-    private final ReviewRepository reviewRepository;
 
     @Autowired
-    public ProductServiceImpl(ProductRepository productRepository, ReviewRepository reviewRepository) {
+    public ProductServiceImpl(ProductRepository productRepository) {
         this.productRepository = productRepository;
-        this.reviewRepository = reviewRepository;
     }
 
     @Override
@@ -81,15 +77,5 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> searchByManufacturer(String manufacturer) {
         return productRepository.findByManufacturerLike(manufacturer);
-    }
-
-    @Override
-    public Review review(Review review) {
-        return reviewRepository.save(review);
-    }
-
-    @Override
-    public List<Review> getReviews(Long productId) {
-        return reviewRepository.findAllByProductId(productId);
     }
 }

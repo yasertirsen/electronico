@@ -7,6 +7,8 @@ import {ReviewDialogComponent} from "./review-dialog/review-dialog.component";
 import {Review} from "../model/review.model";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {User} from "../model/user.model";
+import {ReviewService} from "../service/review.service";
+import {CartService} from "../service/cart.service";
 
 @Component({
   selector: 'app-product-details',
@@ -16,21 +18,24 @@ import {User} from "../model/user.model";
 export class ProductDetailsComponent implements OnInit {
   product: Product;
   reviews: Review[];
+  rating: number;
   quantity: number = 1;
   loading = true;
   isAdmin = false;
   user: User;
 
   constructor(private productService: ProductService, private activatedRoute: ActivatedRoute,
-              private router: Router, private dialog: MatDialog, private _snackBar: MatSnackBar) { }
+              private router: Router, private dialog: MatDialog, private _snackBar: MatSnackBar,
+              private reviewService: ReviewService, private cartService: CartService) { }
 
   ngOnInit(): void {
     this.user = JSON.parse(<string>localStorage.getItem('currentUser'));
     this.isAdmin = this.user.role === 'ROLE_ADMIN';
     this.productService.get(this.activatedRoute.snapshot.params.productId).subscribe(data => {
       this.product = data;
-      this.productService.getReviews(this.product.productId).subscribe(data => {
-        this.reviews = data;
+      this.reviewService.getReviews(this.product.productId).subscribe(data => {
+        this.reviews = data.reviews;
+        this.rating = data.rating;
         this.loading = false;
       });
     },
@@ -51,8 +56,8 @@ export class ProductDetailsComponent implements OnInit {
         });
     reviewDialog.afterClosed().subscribe(result => {
         if(result !== undefined) {
-          this.productService.review(result).subscribe(data => {
-            this._snackBar.open('Review Posted Successfully',
+          this.reviewService.review(result).subscribe(data => {
+            this._snackBar.open('Review posted successfully',
               'Close', {duration: 3000});
             window.location.reload();
           });
@@ -62,7 +67,10 @@ export class ProductDetailsComponent implements OnInit {
 
   onAddToCart() {
     this.user.cart.items.push({itemId: 0, product: this.product, quantity: this.quantity});
-    localStorage.setItem('currentUser', JSON.stringify(this.user));
-    window.location.reload();
+    this.cartService.update(this.user.cart).subscribe(data => {
+      this.user.cart = data;
+      localStorage.setItem('currentUser', JSON.stringify(this.user));
+      window.location.reload();
+    });
   }
 }

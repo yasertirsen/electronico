@@ -6,6 +6,13 @@
       <mat-card-title>{{product.title}}
         <button mat-icon-button color="primary" *ngIf="isAdmin"><mat-icon>edit</mat-icon></button></mat-card-title>
       <mat-card-subtitle>{{product.manufacturer}}</mat-card-subtitle>
+      <mat-card-subtitle>
+        <ng-template #t let-fill="fill">
+              <span class="star" [class.filled]="fill === 100">
+                <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+              </span>
+        </ng-template>
+        <ngb-rating [(rate)]="rating" [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating></mat-card-subtitle>
       <span class="mat-display-1">&euro;{{product.price}}<br><br></span>
       <span>{{product.description}}<br></span>
         <span *ngIf="product.stock > 0" style="color: #1e961e">In Stock<br><br></span>
@@ -29,9 +36,9 @@
     </mat-card-header>
     <mat-card-content>
       <mat-card *ngFor="let review of reviews">
-        <ngb-rating [(rate)]="review.rating" [max]="5" [readonly]="true">
+        <ngb-rating [(rate)]="review.rating" [starTemplate]="t" [max]="5" [readonly]="true">
           <ng-template let-fill="fill">
-            <span class="star" [class.filled]="fill === 100">&#9733;</span>
+            <span class="reviews-star" [class.filled]="fill === 100">&#9733;</span>
           </ng-template>
         </ngb-rating>
         <mat-card-content style="margin: 10px">{{review.reviewContent}}</mat-card-content>

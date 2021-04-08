@@ -37,6 +37,8 @@ import {ReviewDialogComponent} from './product-details/review-dialog/review-dial
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatBadgeModule} from '@angular/material/badge';
+import {SettingsDialogComponent} from './user-settings/settings-dialog/settings-dialog.component';
+import {ViewCartComponent} from './view-cart/view-cart.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import {MatBadgeModule} from '@angular/material/badge';
     SearchComponent,
     ProductDetailsComponent,
     UserSettingsComponent,
-    ReviewDialogComponent
+    ReviewDialogComponent,
+    SettingsDialogComponent,
+    ViewCartComponent
   ],
     imports: [
         BrowserModule,

@@ -3,8 +3,8 @@ package com.example.electronico.controller;
 import com.example.electronico.exception.ProductNotFoundException;
 import com.example.electronico.exception.UserNotFoundException;
 import com.example.electronico.model.Product;
-import com.example.electronico.model.Review;
 import com.example.electronico.service.interfaces.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,8 +15,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/product")
 public class ProductController {
+
     private final ProductService productService;
 
+    @Autowired
     public ProductController(ProductService productService) {
         this.productService = productService;
     }
@@ -64,15 +66,5 @@ public class ProductController {
     @GetMapping("/searchByManufacturer/{manufacturer}")
     public List<Product> searchByManufacturer(@PathVariable String manufacturer) {
         return productService.searchByManufacturer(manufacturer);
-    }
-
-    @PostMapping("/review")
-    public Review review(@RequestBody Review review) {
-        return productService.review(review);
-    }
-
-    @GetMapping("reviews/{productId}")
-    public List<Review> getReviews(@PathVariable Long productId) {
-        return productService.getReviews(productId);
     }
 }
