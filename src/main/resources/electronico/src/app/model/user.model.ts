@@ -1,5 +1,6 @@
 import {Cart} from "./cart.model";
 import {Payment} from "./payment.model";
+import {Product} from "./product.model";
 
 export interface User {
   userId: number;
@@ -15,4 +16,5 @@ export interface User {
   token: string;
   cart: Cart;
   paymentMethods: Payment[];
+  purchaseHistory: Product[];
 }

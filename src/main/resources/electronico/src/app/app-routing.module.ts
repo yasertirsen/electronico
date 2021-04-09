@@ -42,15 +42,18 @@ const routes: Routes = [
   },
   {
     path: 'product/:productId',
-    component: ProductDetailsComponent
+    component: ProductDetailsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'settings',
-    component: UserSettingsComponent
+    component: UserSettingsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'cart',
-    component: ViewCartComponent
+    component: ViewCartComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: '**',

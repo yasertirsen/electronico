@@ -33,4 +33,7 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn
     private List<Payment> paymentMethods;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinColumn(referencedColumnName = "orderId")
+    private List<Order> purchaseHistory;
 }

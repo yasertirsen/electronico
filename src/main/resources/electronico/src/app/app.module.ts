@@ -40,9 +40,7 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {SettingsDialogComponent} from './user-settings/settings-dialog/settings-dialog.component';
 import {ViewCartComponent} from './view-cart/view-cart.component';
 import {AddPaymentMethodDialogComponent} from './user-settings/add-payment-method-dialog/add-payment-method-dialog.component';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule} from "@angular/material/core";
-import {MatMomentDateModule} from "@angular/material-moment-adapter";
+import {ChoosePaymentMethodDialogComponent} from './view-cart/choose-payment-method-dialog/choose-payment-method-dialog.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +59,8 @@ import {MatMomentDateModule} from "@angular/material-moment-adapter";
     ReviewDialogComponent,
     SettingsDialogComponent,
     ViewCartComponent,
-    AddPaymentMethodDialogComponent
+    AddPaymentMethodDialogComponent,
+    ChoosePaymentMethodDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -88,17 +87,13 @@ import {MatMomentDateModule} from "@angular/material-moment-adapter";
     MatDialogModule,
     MatBadgeModule,
     ReactiveFormsModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatMomentDateModule
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    },
-    MatDatepickerModule
+    }
   ],
   bootstrap: [AppComponent]
 })

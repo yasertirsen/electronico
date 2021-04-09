@@ -70,7 +70,8 @@ export class ProductDetailsComponent implements OnInit {
     this.cartService.update(this.user.cart).subscribe(data => {
       this.user.cart = data;
       localStorage.setItem('currentUser', JSON.stringify(this.user));
-      window.location.reload();
+      this._snackBar.open('Product added to cart',
+        'Close', {duration: 3000});
     });
   }
 }

@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Choose Payment Method</h1>
+<div class="content" mat-dialog-content>
+  <mat-form-field class="full-width" appearance="outline">
+    <mat-label>Cards</mat-label>
+    <mat-select [(ngModel)]="selectedPayment">
+      <mat-option *ngFor="let payment of user.paymentMethods" [value]="payment">
+        {{payment.cardName}} - {{payment.expiry}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="selectedPayment">Complete Order</button>
+</div>
