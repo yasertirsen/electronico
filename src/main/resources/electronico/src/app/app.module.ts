@@ -17,7 +17,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatCardModule} from "@angular/material/card";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {LoginComponent} from "./login/login.component";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {RegisterComponent} from './register/register.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
@@ -39,6 +39,10 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatBadgeModule} from '@angular/material/badge';
 import {SettingsDialogComponent} from './user-settings/settings-dialog/settings-dialog.component';
 import {ViewCartComponent} from './view-cart/view-cart.component';
+import {AddPaymentMethodDialogComponent} from './user-settings/add-payment-method-dialog/add-payment-method-dialog.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from "@angular/material/core";
+import {MatMomentDateModule} from "@angular/material-moment-adapter";
 
 @NgModule({
   declarations: [
@@ -56,39 +60,45 @@ import {ViewCartComponent} from './view-cart/view-cart.component';
     UserSettingsComponent,
     ReviewDialogComponent,
     SettingsDialogComponent,
-    ViewCartComponent
+    ViewCartComponent,
+    AddPaymentMethodDialogComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatSnackBarModule,
-        MatButtonModule,
-        LayoutModule,
-        MatToolbarModule,
-        MatSidenavModule,
-        MatIconModule,
-        MatListModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatCardModule,
-        MatPaginatorModule,
-        FormsModule,
-        FlexLayoutModule,
-        HttpClientModule,
-        MatTableModule,
-        MatSortModule,
-        MatSelectModule,
-        NgbModule,
-        MatDialogModule,
-        MatBadgeModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule,
+    MatButtonModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
+    MatPaginatorModule,
+    FormsModule,
+    FlexLayoutModule,
+    HttpClientModule,
+    MatTableModule,
+    MatSortModule,
+    MatSelectModule,
+    NgbModule,
+    MatDialogModule,
+    MatBadgeModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatMomentDateModule
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }
+    },
+    MatDatepickerModule
   ],
   bootstrap: [AppComponent]
 })
