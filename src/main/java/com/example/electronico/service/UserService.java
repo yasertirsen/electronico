@@ -6,51 +6,32 @@ import com.example.electronico.model.User;
 import com.example.electronico.model.UserPrincipal;
 import com.example.electronico.repository.CartRepository;
 import com.example.electronico.repository.UserRepository;
-import com.example.electronico.service.interfaces.CrudStrategy;
+import com.example.electronico.service.pattern.CrudTemplate;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 import static com.example.electronico.constant.ErrorConstants.EMAIL_ALREADY_EXISTS;
 import static com.example.electronico.model.Role.ROLE_USER;
 
 @Service
 @Qualifier("UserDetailsService")
-public class UserService implements CrudStrategy<User>, UserDetailsService {
+public class UserService extends CrudTemplate<User> implements UserDetailsService {
     private final BCryptPasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
     private final CartRepository cartRepository;
 
     @Autowired
     public UserService(BCryptPasswordEncoder passwordEncoder, UserRepository userRepository, CartRepository cartRepository) {
+        super(userRepository);
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
         this.cartRepository = cartRepository;
-    }
-
-
-    @Override
-    public User add(User user) {
-        return userRepository.save(user);
-    }
-
-    @Override
-    public User get(Long userId) throws NotFoundException {
-        return userRepository.findByUserId(userId).orElseThrow(NotFoundException::new);
-    }
-
-    @Override
-    public List<User> getAll() {
-        return userRepository.findAll();
     }
 
     @Override
@@ -58,12 +39,6 @@ public class UserService implements CrudStrategy<User>, UserDetailsService {
         if(!userRepository.existsById(user.getUserId()))
             throw new NotFoundException("User not found");
         return userRepository.save(user);
-    }
-
-    @Override
-    public ResponseEntity<String> delete(Long userId) throws NotFoundException {
-        userRepository.deleteById(userId);
-        return new ResponseEntity<>("User deleted, id: " + userId, HttpStatus.OK);
     }
 
     @SneakyThrows

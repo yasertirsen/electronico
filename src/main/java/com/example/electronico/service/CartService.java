@@ -8,10 +8,8 @@ import com.example.electronico.model.Order;
 import com.example.electronico.model.User;
 import com.example.electronico.repository.CartRepository;
 import com.example.electronico.repository.UserRepository;
-import com.example.electronico.service.interfaces.CrudStrategy;
+import com.example.electronico.service.pattern.CrudTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -20,30 +18,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CartService implements CrudStrategy<Cart> {
+public class CartService extends CrudTemplate<Cart> {
 
     private final CartRepository cartRepository;
     private final UserRepository userRepository;
 
     @Autowired
     public CartService(CartRepository cartRepository, UserRepository userRepository) {
+        super(cartRepository);
         this.cartRepository = cartRepository;
         this.userRepository = userRepository;
-    }
-
-    @Override
-    public Cart add(Cart cart) {
-        return cartRepository.save(cart);
-    }
-
-    @Override
-    public Cart get(Long cartId) throws NotFoundException {
-        return cartRepository.findById(cartId).orElseThrow(NotFoundException::new);
-    }
-
-    @Override
-    public List<Cart> getAll() {
-        return cartRepository.findAll();
     }
 
     @Override
@@ -53,12 +37,6 @@ public class CartService implements CrudStrategy<Cart> {
             return cartRepository.save(cart);
         }
         throw new NotFoundException();
-    }
-
-    @Override
-    public ResponseEntity<String> delete(Long cartId) throws NotFoundException {
-        cartRepository.deleteById(cartId);
-        return new ResponseEntity<>("Cart deleted, id: " + cartId, HttpStatus.OK);
     }
 
     public User pay(Order order, Long userId) throws UserNotFoundException {
