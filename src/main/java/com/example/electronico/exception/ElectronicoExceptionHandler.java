@@ -17,7 +17,7 @@ import static org.springframework.http.HttpStatus.*;
 @RestControllerAdvice
 public class ElectronicoExceptionHandler {
 
-    @ExceptionHandler(ProductNotFoundException.class)
+    @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<HttpCustomResponse> productNotFoundException () {
         return createHttpResponse(BAD_REQUEST, PRODUCT_WAS_NOT_FOUND);
     }

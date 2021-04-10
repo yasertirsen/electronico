@@ -1,12 +1,12 @@
 package com.example.electronico.controller;
 
 import com.example.electronico.exception.ElectronicoExceptionHandler;
-import com.example.electronico.exception.ProductNotFoundException;
+import com.example.electronico.exception.NotFoundException;
 import com.example.electronico.exception.UserNotFoundException;
 import com.example.electronico.model.Cart;
 import com.example.electronico.model.Order;
 import com.example.electronico.model.User;
-import com.example.electronico.service.interfaces.CartService;
+import com.example.electronico.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +22,7 @@ public class CartController extends ElectronicoExceptionHandler {
     }
 
     @PutMapping("/update")
-    public Cart update(@RequestBody Cart cart) throws ProductNotFoundException {
+    public Cart update(@RequestBody Cart cart) throws NotFoundException {
         return cartService.update(cart);
     }
 

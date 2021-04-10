@@ -10,16 +10,18 @@
           <mat-icon>home</mat-icon>Home</a>
         <a mat-list-item routerLink="/settings" (click)="drawer.toggle()">
           <mat-icon>settings</mat-icon>Settings</a>
+      <mat-divider></mat-divider>
       <a *ngIf="isAdmin()" mat-list-item routerLink="/add-product" (click)="drawer.toggle()">
         <mat-icon>inventory_2</mat-icon>Add Product</a>
-      <mat-divider></mat-divider>
+      <a *ngIf="isAdmin()" mat-list-item routerLink="/users" (click)="drawer.toggle()">
+        <mat-icon>people</mat-icon>Users</a>
       <a mat-list-item (click)="onLogout(drawer)">
         <mat-icon>logout</mat-icon>Logout</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <div *ngIf="activeRoute !== '/register' && activeRoute !== '/login' && activeRoute !== '/'">
+      <div *ngIf="isAuthenticated()">
       <button
         type="button"
         aria-label="Toggle sidenav"
@@ -32,8 +34,8 @@
         <span class="mat-display-1"><b>Electronico.</b></span></a>
       <span class="spacer"></span>
       <mat-nav-list>
-        <a matLine *ngIf="activeRoute === '/login'" routerLink="/register">Register</a>
-        <a matLine *ngIf="activeRoute === '/register' || activeRoute === '/'" routerLink="/login">Login</a>
+        <a matLine *ngIf="!isAuthenticated()"  routerLink="/register">Register</a>
+        <a matLine *ngIf="!isAuthenticated()" routerLink="/login">Login</a>
         <button mat-icon-button [matBadge]="user.cart.items.length"
                 matBadgeColor="accent"
                 [matBadgeHidden]="hidden"
@@ -42,6 +44,7 @@
           <mat-icon>shopping_cart</mat-icon></button>
       </mat-nav-list>
     </mat-toolbar>
+    <app-search-toolbar></app-search-toolbar>
     <ng-content></ng-content>
   </mat-sidenav-content>
 </mat-sidenav-container>

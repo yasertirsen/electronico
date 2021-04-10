@@ -17,6 +17,7 @@ export class MainNavComponent implements OnInit{
   activeRoute: string | undefined;
   user: User;
   hidden = true;
+  unauthenticatedRoutes = ['/login', '/register', '/'];
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -50,10 +51,11 @@ export class MainNavComponent implements OnInit{
   }
 
   isAuthenticated() {
-    return !!this.user;
+    return !!localStorage.getItem('currentUser');
   }
 
   isAdmin() {
-      return !!this.user && this.user.role === 'ROLE_ADMIN';
+      return !!localStorage.getItem('currentUser') &&
+        JSON.parse(<string>localStorage.getItem('currentUser')).role === 'ROLE_ADMIN';
   }
 }

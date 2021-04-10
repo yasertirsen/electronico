@@ -5,7 +5,7 @@ import com.example.electronico.jwt.JwtTokenProvider;
 import com.example.electronico.model.User;
 import com.example.electronico.model.UserPrincipal;
 import com.example.electronico.repository.UserRepository;
-import com.example.electronico.service.interfaces.UserService;
+import com.example.electronico.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -57,7 +57,7 @@ public class UserController {
     }
 
     @PutMapping("/update")
-    public User update(@RequestBody User user) throws UserNotFoundException {
+    public User update(@RequestBody User user) throws NotFoundException {
         return userService.update(user);
     }
 }

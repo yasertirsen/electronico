@@ -1,10 +1,9 @@
 package com.example.electronico.controller;
 
-import com.example.electronico.exception.ProductNotFoundException;
+import com.example.electronico.exception.NotFoundException;
 import com.example.electronico.exception.UserNotFoundException;
 import com.example.electronico.model.Product;
-import com.example.electronico.service.interfaces.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.electronico.service.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,7 +17,6 @@ public class ProductController {
 
     private final ProductService productService;
 
-    @Autowired
     public ProductController(ProductService productService) {
         this.productService = productService;
     }
@@ -29,7 +27,7 @@ public class ProductController {
     }
 
     @GetMapping("/get/{productId}")
-    public Product get(@PathVariable Long productId) throws ProductNotFoundException {
+    public Product get(@PathVariable Long productId) throws NotFoundException {
         return productService.get(productId);
     }
 
@@ -39,12 +37,12 @@ public class ProductController {
     }
 
     @PutMapping("/update")
-    public Product update(@RequestBody Product product) throws ProductNotFoundException {
+    public Product update(@RequestBody Product product) throws NotFoundException {
         return productService.update(product);
     }
 
     @PutMapping("/delete/{productId}")
-    public ResponseEntity<String> delete(@PathVariable Long productId) throws ProductNotFoundException {
+    public ResponseEntity<String> delete(@PathVariable Long productId) throws NotFoundException {
         return productService.delete(productId);
     }
 
