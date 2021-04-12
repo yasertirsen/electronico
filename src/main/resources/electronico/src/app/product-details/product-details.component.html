@@ -35,7 +35,7 @@
       </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      <mat-card *ngFor="let review of reviews">
+      <mat-card *ngFor="let review of product.reviews">
         <ngb-rating [(rate)]="review.rating" [starTemplate]="t" [max]="5" [readonly]="true">
           <ng-template let-fill="fill">
             <span class="reviews-star" [class.filled]="fill === 100">&#9733;</span>

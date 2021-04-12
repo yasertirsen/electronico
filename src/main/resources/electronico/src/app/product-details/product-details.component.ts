@@ -7,7 +7,6 @@ import {ReviewDialogComponent} from "./review-dialog/review-dialog.component";
 import {Review} from "../model/review.model";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {User} from "../model/user.model";
-import {ReviewService} from "../service/review.service";
 import {CartService} from "../service/cart.service";
 
 @Component({
@@ -26,16 +25,15 @@ export class ProductDetailsComponent implements OnInit {
 
   constructor(private productService: ProductService, private activatedRoute: ActivatedRoute,
               private router: Router, private dialog: MatDialog, private _snackBar: MatSnackBar,
-              private reviewService: ReviewService, private cartService: CartService) { }
+              private cartService: CartService) { }
 
   ngOnInit(): void {
     this.user = JSON.parse(<string>localStorage.getItem('currentUser'));
     this.isAdmin = this.user.role === 'ROLE_ADMIN';
     this.productService.get(this.activatedRoute.snapshot.params.productId).subscribe(data => {
       this.product = data;
-      this.reviewService.getReviews(this.product.productId).subscribe(data => {
-        this.reviews = data.reviews;
-        this.rating = data.rating;
+      this.productService.getRating(this.product.productId).subscribe(data => {
+        this.rating = data;
         this.loading = false;
       });
     },
@@ -55,11 +53,12 @@ export class ProductDetailsComponent implements OnInit {
           data: {productId: this.product.productId, userId: this.user.userId}
         });
     reviewDialog.afterClosed().subscribe(result => {
-        if(result !== undefined) {
-          this.reviewService.review(result).subscribe(data => {
+        if(!!result) {
+          this.product.reviews.push(result)
+          this.productService.update(this.product).subscribe(data => {
+            this.product = data;
             this._snackBar.open('Review posted successfully',
               'Close', {duration: 3000});
-            window.location.reload();
           });
         }
       });

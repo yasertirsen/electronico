@@ -41,4 +41,8 @@ export class ProductService {
   searchByManufacturer(manufacturer: string): Observable<any> {
     return this.http.get('http://localhost:8084/api/product/searchByManufacturer/' + manufacturer);
   }
+
+  getRating(productId: number): Observable<any> {
+    return this.http.get('http://localhost:8084/api/product/rating/' + productId);
+  }
 }

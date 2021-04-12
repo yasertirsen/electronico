@@ -1,7 +1,6 @@
 package com.example.electronico.controller;
 
 import com.example.electronico.exception.NotFoundException;
-import com.example.electronico.exception.UserNotFoundException;
 import com.example.electronico.model.Product;
 import com.example.electronico.service.ProductService;
 import org.springframework.http.ResponseEntity;
@@ -47,7 +46,7 @@ public class ProductController {
     }
 
     @PostMapping( "/upload-image/{productId}")
-    public Product uploadImage(@RequestParam("imageFile") MultipartFile file, @PathVariable Long productId) throws IOException, UserNotFoundException {
+    public Product uploadImage(@RequestParam("imageFile") MultipartFile file, @PathVariable Long productId) throws IOException, NotFoundException {
         return productService.uploadImage(file, productId);
     }
 
@@ -64,5 +63,10 @@ public class ProductController {
     @GetMapping("/searchByManufacturer/{manufacturer}")
     public List<Product> searchByManufacturer(@PathVariable String manufacturer) {
         return productService.searchByManufacturer(manufacturer);
+    }
+
+    @GetMapping("/rating/{productId}")
+    public double getRating(@PathVariable Long productId) throws NotFoundException {
+        return productService.getRating(productId);
     }
 }

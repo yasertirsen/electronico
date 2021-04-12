@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Product} from "../model/product.model";
 import {ProductService} from "../service/product.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -10,16 +10,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent implements OnInit {
-  product: Product = {
-    productId: 0,
-    title: '',
-    manufacturer: '',
-    price: 0,
-    category: '',
-    description: '',
-    image: null,
-    stock: 0
-  }
+  product: Product = new Product();
   selectedFile: File;
   selectedCategory: string;
   categories = ['Gaming Consoles', 'Laptop and PC', 'Smartphones', 'Accessories', 'Cameras', 'Home', 'Other']

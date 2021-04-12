@@ -1,4 +1,6 @@
-export interface Product {
+import {Review} from "./review.model";
+
+export class Product {
   productId: number;
   title: string;
   manufacturer: string;
@@ -7,4 +9,5 @@ export interface Product {
   description: string;
   image: any;
   stock: number;
+  reviews: Review[];
 }

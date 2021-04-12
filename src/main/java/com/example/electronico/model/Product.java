@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -23,4 +24,7 @@ public class Product {
     private byte[] image;
     private String category;
     private Integer stock;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn
+    private List<Review> reviews;
 }
