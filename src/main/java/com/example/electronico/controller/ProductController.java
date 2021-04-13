@@ -2,7 +2,7 @@ package com.example.electronico.controller;
 
 import com.example.electronico.exception.NotFoundException;
 import com.example.electronico.model.Product;
-import com.example.electronico.service.ProductService;
+import com.example.electronico.service.ProductServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,9 +14,9 @@ import java.util.List;
 @RequestMapping("/api/product")
 public class ProductController {
 
-    private final ProductService productService;
+    private final ProductServiceImpl productService;
 
-    public ProductController(ProductService productService) {
+    public ProductController(ProductServiceImpl productService) {
         this.productService = productService;
     }
 

@@ -1,4 +1,4 @@
-package com.example.electronico.service.pattern;
+package com.example.electronico.service.pattern.templateMethod;
 
 import com.example.electronico.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -6,7 +6,8 @@ import com.example.electronico.model.*;
 import com.example.electronico.repository.CartRepository;
 import com.example.electronico.repository.ProductRepository;
 import com.example.electronico.repository.UserRepository;
-import com.example.electronico.service.pattern.CrudTemplate;
+import com.example.electronico.service.pattern.proxy.CartService;
+import com.example.electronico.service.pattern.templateMethod.CrudTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,14 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CartService extends CrudTemplate<Cart> {
+public class CartServiceImpl extends CrudTemplate<Cart> implements CartService {
 
     private final CartRepository cartRepository;
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
 
     @Autowired
-    public CartService(CartRepository cartRepository, UserRepository userRepository, ProductRepository productRepository) {
+    public CartServiceImpl(CartRepository cartRepository, UserRepository userRepository, ProductRepository productRepository) {
         super(cartRepository);
         this.cartRepository = cartRepository;
         this.userRepository = userRepository;
@@ -39,6 +40,7 @@ public class CartService extends CrudTemplate<Cart> {
         throw new NotFoundException();
     }
 
+    @Override
     public User pay(Order order, Long userId) throws UserNotFoundException {
         User user = userRepository.findByUserId(userId).orElseThrow(UserNotFoundException::new);
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -64,6 +66,7 @@ public class CartService extends CrudTemplate<Cart> {
         return userRepository.save(user);
     }
 
+    @Override
     public double calculateTotal(List<Item> items) {
         double total = 0;
         for(Item item : items) {

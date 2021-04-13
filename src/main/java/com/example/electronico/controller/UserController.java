@@ -5,7 +5,7 @@ import com.example.electronico.jwt.JwtTokenProvider;
 import com.example.electronico.model.User;
 import com.example.electronico.model.UserPrincipal;
 import com.example.electronico.repository.UserRepository;
-import com.example.electronico.service.UserService;
+import com.example.electronico.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,13 +20,13 @@ import static com.example.electronico.constant.SecurityConstants.EXPIRATION_TIME
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
-    private final UserService userService;
+    private final UserServiceImpl userService;
     private final UserRepository userRepository;
     private final JwtTokenProvider jwtTokenProvider;
     private final AuthenticationManager authenticationManager;
 
     @Autowired
-    public UserController(UserService userService, UserRepository userRepository,
+    public UserController(UserServiceImpl userService, UserRepository userRepository,
                           JwtTokenProvider jwtTokenProvider, AuthenticationManager authenticationManager) {
         this.userService = userService;
         this.userRepository = userRepository;

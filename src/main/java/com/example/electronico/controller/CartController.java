@@ -6,7 +6,7 @@ import com.example.electronico.exception.UserNotFoundException;
 import com.example.electronico.model.Cart;
 import com.example.electronico.model.Order;
 import com.example.electronico.model.User;
-import com.example.electronico.service.CartService;
+import com.example.electronico.service.CartServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/cart")
 public class CartController extends ElectronicoExceptionHandler {
 
-    private final CartService cartService;
+    private final CartServiceImpl cartService;
 
     @Autowired
-    public CartController(CartService cartService) {
+    public CartController(CartServiceImpl cartService) {
         this.cartService = cartService;
     }
 
