@@ -16,8 +16,6 @@ import {User} from "../model/user.model";
 export class MainNavComponent implements OnInit{
   activeRoute: string | undefined;
   user: User;
-  hidden = true;
-  unauthenticatedRoutes = ['/login', '/register', '/'];
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -35,10 +33,6 @@ export class MainNavComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    if(!!localStorage.getItem('currentUser')) {
-      this.user = JSON.parse(<string>localStorage.getItem('currentUser'));
-      this.hidden = this.user.cart.items.length === 0;
-      }
     }
 
 
@@ -51,11 +45,14 @@ export class MainNavComponent implements OnInit{
   }
 
   isAuthenticated() {
-    return !!localStorage.getItem('currentUser');
+    return this.userService.isAuthenticated();
   }
 
   isAdmin() {
-      return !!localStorage.getItem('currentUser') &&
-        JSON.parse(<string>localStorage.getItem('currentUser')).role === 'ROLE_ADMIN';
+     return this.userService.isAdmin();
+  }
+
+  getCartLength(): number {
+    return this.userService.getCartLength();
   }
 }

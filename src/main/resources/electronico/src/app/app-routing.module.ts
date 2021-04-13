@@ -11,6 +11,7 @@ import {UserSettingsComponent} from "./user-settings/user-settings.component";
 import {AuthGuard} from "./_guards/auth.guard";
 import {Authorities} from "./model/authorities.model";
 import {ViewCartComponent} from "./view-cart/view-cart.component";
+import {ViewUsersComponent} from "./view-users/view-users.component";
 
 const routes: Routes = [
   {
@@ -33,6 +34,12 @@ const routes: Routes = [
   {
     path: 'add-product',
     component: AddProductComponent,
+    canActivate: [AuthGuard],
+    data: {authorities: [Authorities.ADMIN]}
+  },
+  {
+    path: 'users',
+    component: ViewUsersComponent,
     canActivate: [AuthGuard],
     data: {authorities: [Authorities.ADMIN]}
   },

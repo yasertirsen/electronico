@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {LoginRequest} from "../model/login-request-payload";
 import {User} from "../model/user.model";
 import {RegisterRequest} from "../model/register-request.model";
+import {Authorities} from "../model/authorities.model";
 
 @Injectable({
   providedIn: 'root'
@@ -57,5 +58,27 @@ export class UserService {
 
   updateUser(user: User): Observable<any>{
     return this.http.put('http://localhost:8084/api/user/update', user);
+  }
+
+  getAll(): Observable<any> {
+    return this.http.get('http://localhost:8084/api/user/all')
+  }
+
+  isAdmin(): boolean {
+    if(this.isAuthenticated()) {
+      return JSON.parse(<string>localStorage.getItem('currentUser')).authorities[0] === Authorities.ADMIN;
+    }
+    return false;
+  }
+
+  getCartLength(): number {
+    if(this.isAuthenticated()) {
+      return JSON.parse(<string>localStorage.getItem('currentUser')).cart.items.length;
+    }
+    return 0;
+  }
+
+  isAuthenticated(): boolean {
+    return !!localStorage.getItem('currentUser');
   }
 }

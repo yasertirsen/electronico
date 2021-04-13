@@ -1,38 +1,41 @@
-<mat-card class="centered">
-  <mat-card-title>Add Product</mat-card-title>
-  <mat-card-content>
-    <form class="spacer">
-      <mat-label>Choose a profile picture (510x510)</mat-label>
-      <br>
-      <input type="file" (change)="onFileChanged($event)">
-    </form>
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Name</mat-label>
-      <input matInput placeholder="Ex. Playstation 5" [(ngModel)]="product.title" required>
-    </mat-form-field>
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Manufacturer</mat-label>
-      <input matInput placeholder="Ex. Sony" [(ngModel)]="product.manufacturer" required>
-    </mat-form-field>
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Price</mat-label>
-      <input matInput placeholder="Ex. 500" [(ngModel)]="product.price" type="number" required>
-    </mat-form-field>
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Categories</mat-label>
-      <mat-select [(value)]="selectedCategory">
-        <mat-option></mat-option>
-        <mat-option [value]="option" *ngFor="let option of categories">{{ option }}</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Description</mat-label>
-      <textarea matInput placeholder="Description" [(ngModel)]="product.description" required></textarea>
-    </mat-form-field>
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Stock</mat-label>
-      <input matInput placeholder="Stock" [(ngModel)]="product.stock" type="number" required>
-    </mat-form-field>
-    <button mat-raised-button color="accent" (click)="onAdd()">Add</button>
-  </mat-card-content>
-</mat-card>
+<div class="container">
+  <div class="d-flex justify-content-center">
+    <mat-card class="spacer">
+      <mat-card-title>Add Product</mat-card-title>
+      <hr>
+      <mat-card-content>
+          <mat-label>Product image</mat-label>
+          <br>
+          <input type="file" (change)="onFileChanged($event)">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Ex. Playstation 5" [(ngModel)]="product.title" required>
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Manufacturer</mat-label>
+          <input matInput placeholder="Ex. Sony" [(ngModel)]="product.manufacturer" required>
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Price</mat-label>
+          <input matInput placeholder="Ex. 500" [(ngModel)]="product.price" type="number" required>
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Categories</mat-label>
+          <mat-select [(value)]="selectedCategory">
+            <mat-option></mat-option>
+            <mat-option [value]="option" *ngFor="let option of categories">{{ option }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Description</mat-label>
+          <textarea matInput placeholder="Description" [(ngModel)]="product.description" required></textarea>
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Stock</mat-label>
+          <input matInput placeholder="Stock" [(ngModel)]="product.stock" type="number" required>
+        </mat-form-field>
+        <button mat-raised-button color="accent" (click)="onAdd()">Add</button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

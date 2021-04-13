@@ -1,0 +1,53 @@
+<div class="container">
+  <table mat-table
+         [dataSource]="datasource" multiTemplateDataRows
+         matSort
+         class="mat-elevation-z8"
+         *ngIf="!loading">
+
+    <ng-container matColumnDef="fullName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <td mat-cell *matCellDef="let user" ><h2 class="mat-h2">{{user.fullName}}</h2></td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+      <td mat-cell *matCellDef="let user" >{{user.email}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="address">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Address</th>
+      <td mat-cell *matCellDef="let user" >{{user.address}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="expandedDetail">
+      <td mat-cell *matCellDef="let user" [attr.colspan]="columnsToDisplay.length">
+        <div class="example-element-detail"
+             [@detailExpand]="user == expandedElement ? 'expanded' : 'collapsed'">
+          <h3><b>Orders</b></h3>
+          <hr>
+          <h3 *ngIf="user.purchaseHistory.length === 0">No orders</h3>
+          <div *ngFor="let order of user.purchaseHistory">
+            <div class="order-details">
+            <h3><b>Order #{{order.orderId}} - {{order.date}}</b></h3>
+            <ul>
+              <li *ngFor="let item of order.items" >{{item.product.title}}<br> Qty: {{item.quantity}}</li>
+            </ul>
+            <h4><b>Total: &euro;{{order.total}}</b></h4>
+            </div>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
+        class="example-element-row"
+        [class.example-expanded-row]="expandedElement === element"
+        (click)="expandedElement = expandedElement === element ? null : element">
+    </tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>
+</div>

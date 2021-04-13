@@ -39,7 +39,7 @@ export class ViewCartComponent implements OnInit {
   }
 
   onPay() {
-    if(!this.user.paymentMethods) {
+    if(this.user.paymentMethods.length === 0) {
       this._snackBar.open('Please add a payment method in settings to complete order',
         'Close', {duration: 3000});
     }

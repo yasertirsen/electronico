@@ -1,15 +1,15 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {User} from "../model/user.model";
 import {MatTableDataSource} from "@angular/material/table";
-import {Product} from "../../model/product.model";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
+import {UserService} from "../service/user.service";
 import {animate, state, style, transition, trigger} from "@angular/animations";
-import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-products-view',
-  templateUrl: './products-view.component.html',
-  styleUrls: ['./products-view.component.css'],
+  selector: 'app-view-users',
+  templateUrl: './view-users.component.html',
+  styleUrls: ['./view-users.component.css'],
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({height: '0px', minHeight: '0'})),
@@ -18,12 +18,11 @@ import {Router} from "@angular/router";
     ]),
   ]
 })
-export class ProductsViewComponent implements OnInit {
-
-  @Input() products: Product[];
+export class ViewUsersComponent implements OnInit {
+  columnsToDisplay = ['fullName', 'email', 'address'];
   datasource = new MatTableDataSource();
-  columnsToDisplay = ['image', 'title', 'manufacturer', 'category', 'price'];
-  expandedElement: Product | null;
+  expandedElement: User | null;
+  loading = true;
 
   private paginator: MatPaginator;
   private sort: MatSort;
@@ -43,23 +42,16 @@ export class ProductsViewComponent implements OnInit {
     this.datasource.sort = this.sort;
   }
 
-  constructor(private router: Router) {
-  }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.datasource.filter = filterValue.trim().toLowerCase();
-  }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.datasource.data = this.products;
+    this.userService.getAll().subscribe(data => {
+      this.datasource.data = data;
+      this.loading = false;
+    });
   }
 
-  getImg(image: string | SVGImageElement) {
-    return 'data:image/jpeg;base64,' + image
-  }
-
-  onProduct(product: any): void {
-    this.router.navigateByUrl('/product/' + product.productId);
+  onUser(user: User) {
+    console.log(user);
   }
 }

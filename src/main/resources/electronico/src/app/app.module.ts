@@ -41,6 +41,8 @@ import {SettingsDialogComponent} from './user-settings/settings-dialog/settings-
 import {ViewCartComponent} from './view-cart/view-cart.component';
 import {AddPaymentMethodDialogComponent} from './user-settings/add-payment-method-dialog/add-payment-method-dialog.component';
 import {ChoosePaymentMethodDialogComponent} from './view-cart/choose-payment-method-dialog/choose-payment-method-dialog.component';
+import {ViewUsersComponent} from './view-users/view-users.component';
+import {EditProductDialogComponent} from './product-details/edit-product-dialog/edit-product-dialog.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import {ChoosePaymentMethodDialogComponent} from './view-cart/choose-payment-met
     SettingsDialogComponent,
     ViewCartComponent,
     AddPaymentMethodDialogComponent,
-    ChoosePaymentMethodDialogComponent
+    ChoosePaymentMethodDialogComponent,
+    ViewUsersComponent,
+    EditProductDialogComponent
   ],
   imports: [
     BrowserModule,

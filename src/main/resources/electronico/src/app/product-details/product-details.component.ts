@@ -8,6 +8,8 @@ import {Review} from "../model/review.model";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {User} from "../model/user.model";
 import {CartService} from "../service/cart.service";
+import {UserService} from "../service/user.service";
+import {EditProductDialogComponent} from "./edit-product-dialog/edit-product-dialog.component";
 
 @Component({
   selector: 'app-product-details',
@@ -20,16 +22,14 @@ export class ProductDetailsComponent implements OnInit {
   rating: number;
   quantity: number = 1;
   loading = true;
-  isAdmin = false;
   user: User;
 
   constructor(private productService: ProductService, private activatedRoute: ActivatedRoute,
               private router: Router, private dialog: MatDialog, private _snackBar: MatSnackBar,
-              private cartService: CartService) { }
+              private cartService: CartService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.user = JSON.parse(<string>localStorage.getItem('currentUser'));
-    this.isAdmin = this.user.role === 'ROLE_ADMIN';
     this.productService.get(this.activatedRoute.snapshot.params.productId).subscribe(data => {
       this.product = data;
       this.productService.getRating(this.product.productId).subscribe(data => {
@@ -44,6 +44,10 @@ export class ProductDetailsComponent implements OnInit {
 
   getImg(image: string | SVGImageElement) {
     return 'data:image/jpeg;base64,' + image
+  }
+
+  isAdmin() {
+    return this.userService.isAdmin();
   }
 
   onReview() {
@@ -69,8 +73,23 @@ export class ProductDetailsComponent implements OnInit {
     this.cartService.update(this.user.cart).subscribe(data => {
       this.user.cart = data;
       localStorage.setItem('currentUser', JSON.stringify(this.user));
-      this._snackBar.open('Product added to cart',
-        'Close', {duration: 3000});
+    });
+  }
+
+  onEdit() {
+    const editDialog =
+      this.dialog.open(EditProductDialogComponent, {
+        width: '500px',
+        data: {product: this.product}
+      });
+    editDialog.afterClosed().subscribe(data => {
+      if(!!data) {
+        this.productService.update(data).subscribe(data => {
+          this.product = data;
+          this._snackBar.open('Product updated successfully',
+            'Close', {duration: 3000});
+        });
+      }
     });
   }
 }

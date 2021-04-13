@@ -18,7 +18,7 @@ public class Order {
     @ManyToOne
     @JoinColumn(referencedColumnName = "paymentId", name = "paymentId")
     private Payment paymentMethod;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinColumn(referencedColumnName = "itemId", name = "itemId")
     private List<Item> items;
     private double total;

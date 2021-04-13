@@ -13,6 +13,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static com.example.electronico.constant.SecurityConstants.EXPIRATION_TIME;
 
 @RestController
@@ -59,5 +61,10 @@ public class UserController {
     @PutMapping("/update")
     public User update(@RequestBody User user) throws NotFoundException {
         return userService.update(user);
+    }
+
+    @GetMapping ("/all")
+    public List<User> getAll() {
+        return userService.getAll();
     }
 }
