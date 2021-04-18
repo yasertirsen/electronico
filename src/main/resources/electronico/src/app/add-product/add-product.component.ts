@@ -41,7 +41,7 @@ export class AddProductComponent implements OnInit {
       },
         error => {
           console.log(error);
-          this._snackBar.open('Error Uploading', 'Close', {duration: 3000});
+          this._snackBar.open('Product must have an image', 'Close', {duration: 3000});
         });
 
     },

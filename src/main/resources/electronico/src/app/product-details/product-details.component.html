@@ -23,7 +23,7 @@
           <input matInput min="1" type="number" [(ngModel)]="quantity">
         </mat-form-field>
       </div>
-      <button mat-raised-button color="primary" (click)="onAddToCart()">Add To Cart</button>
+      <button mat-raised-button color="primary" (click)="onAddToCart()" [disabled]="product.stock <= 0">Add To Cart</button>
     </mat-card-content>
   </mat-card>
 

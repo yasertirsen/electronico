@@ -16,7 +16,7 @@ import {ViewUsersComponent} from "./view-users/view-users.component";
 const routes: Routes = [
   {
     path:'',
-    component: RegisterComponent,
+    component: HomeComponent,
     pathMatch: 'full'
   },
   {

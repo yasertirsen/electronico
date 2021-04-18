@@ -1,7 +1,6 @@
 package com.example.electronico.filter;
 
 import com.example.electronico.jwt.JwtTokenProvider;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -22,7 +21,6 @@ import static com.example.electronico.constant.SecurityConstants.OPTIONS_HTTP_ME
 import static com.example.electronico.constant.SecurityConstants.TOKEN_PREFIX;
 
 
-@Data
 @Component
 public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
