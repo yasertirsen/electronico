@@ -59,7 +59,7 @@ export class ProductsViewComponent implements OnInit {
     return 'data:image/jpeg;base64,' + image
   }
 
-  onProduct(product: any): void {
+  onProduct(product: Product): void {
     this.router.navigateByUrl('/product/' + product.productId);
   }
 }

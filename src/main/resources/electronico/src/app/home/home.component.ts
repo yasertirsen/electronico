@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProductService} from "../service/product.service";
 import {Product} from "../model/product.model";
 
@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
       this.loading = false;
     },
       error => {
+        this.loading = false;
       console.log(error);
       });
   }
