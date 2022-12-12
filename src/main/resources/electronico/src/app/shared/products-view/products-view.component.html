@@ -17,8 +17,8 @@
 
     <ng-container matColumnDef="title">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-      <td mat-cell *matCellDef="let element" ><h2 class="mat-h2">{{element.title}}</h2>
-        <br>{{element.description}}</td>
+      <td mat-cell *matCellDef="let element"><h2 class="mat-h2">{{element.title}}</h2>
+        <br><span class="description">{{element.description}}</span></td>
     </ng-container>
 
     <ng-container matColumnDef="manufacturer">
@@ -28,7 +28,7 @@
 
     <ng-container matColumnDef="category">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
-      <td mat-cell *matCellDef="let element" >{{element.category}}</td>
+      <td mat-cell *matCellDef="let element">{{element.category}}</td>
     </ng-container>
 
     <ng-container matColumnDef="price">
@@ -43,7 +43,7 @@
     </tr>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
 
   <span *ngIf="products.length === 0" class="mat-display-1 centered">No Products Found</span>
 </div>
